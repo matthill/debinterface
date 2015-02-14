@@ -47,34 +47,36 @@ class interfaces:
                     pass
                 else:
                     # Parse the detail clauses.
-                    if line[0].isspace() == True:
-                        sline = line.split()
-                        if sline[0] == 'address':
-                            adapters[context].setAddress(sline[1])
-                        if sline[0] == 'netmask':
-                            adapters[context].setNetmask(sline[1])
-                        if sline[0] == 'gateway':
-                            adapters[context].setGateway(sline[1])
-                        if sline[0] == 'broadcast':
-                            adapters[context].setBroadcast(sline[1])
-                        if sline[0] == 'network':
-                            adapters[context].setNetwork(sline[1])
-                        if sline[0].startswith('bridge') == True:
-                            opt = sline[0].split('_')
-                            sline.pop(0)
-                            ifs = " ".join(sline)
-                            adapters[context].replaceBropt(opt[1], ifs)
-                        if sline[0] == 'up' or sline[0] == 'down' or sline[0] == 'pre-up' or sline[0] == 'post-down':
-                            ud = sline.pop(0)
-                            cmd = ' '.join(sline)
-                            if ud == 'up':
-                                adapters[context].appendUp(cmd)
-                            if ud == 'down':
-                                adapters[context].appendDown(cmd)
-                            if ud == 'pre-up':
-                                adapters[context].appendPreUp(cmd)
-                            if ud == 'post-down':
-                                adapters[context].appendPostDown(cmd)
+
+                    sline = line.split()
+                    if sline[0] == 'address':
+                        adapters[context].setAddress(sline[1])
+                    if sline[0] == 'netmask':
+                        adapters[context].setNetmask(sline[1])
+                    if sline[0] == 'gateway':
+                        adapters[context].setGateway(sline[1])
+                    if sline[0] == 'broadcast':
+                        adapters[context].setBroadcast(sline[1])
+                    if sline[0] == 'network':
+                        adapters[context].setNetwork(sline[1])
+                    if sline[0] == 'dns-nameservers':
+                        adapters[context].setDnsNameservers(sline[1])
+                    if sline[0].startswith('bridge') == True:
+                        opt = sline[0].split('_')
+                        sline.pop(0)
+                        ifs = " ".join(sline)
+                        adapters[context].replaceBropt(opt[1], ifs)
+                    if sline[0] == 'up' or sline[0] == 'down' or sline[0] == 'pre-up' or sline[0] == 'post-down':
+                        ud = sline.pop(0)
+                        cmd = ' '.join(sline)
+                        if ud == 'up':
+                            adapters[context].appendUp(cmd)
+                        if ud == 'down':
+                            adapters[context].appendDown(cmd)
+                        if ud == 'pre-up':
+                            adapters[context].appendPreUp(cmd)
+                        if ud == 'post-down':
+                            adapters[context].appendPostDown(cmd)
 
                 # Identify which adapters are flagged with auto and allow-hotplug.
                 if line.startswith('auto'):
