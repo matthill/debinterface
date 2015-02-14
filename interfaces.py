@@ -202,6 +202,6 @@ class interfaces:
         self.IFACE = Template('iface $name $inet $source\n')
         self.CMD = Template('\t$varient $value\n')
 
-        self.addressFields = ['address', 'network', 'netmask', 'broadcast', 'gateway']
+        self.addressFields = ['address', 'network', 'netmask', 'broadcast', 'gateway', 'dns-nameservers']
         self.prepFields = ['pre-up', 'up', 'down', 'post-down']
         self.bridgeFields = ['ports', 'fd', 'hello', 'maxage', 'stp']

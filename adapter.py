@@ -46,6 +46,13 @@ class networkAdapter:
         else:
             pass
 
+    # Set the ipaddress of an interface.
+    def setDnsNameservers(self, a):
+        if self.validateIP(a) == 1:
+            self.ifAttributes['dns-nameservers'] = a
+        else:
+            pass
+
     # Set the broadcast address of an interface.
     def setBroadcast(self, b):
         if self.validateIP(b) == 1:
@@ -157,6 +164,8 @@ class networkAdapter:
                 elif key == 'netmask':
                     self.setNetmask(options[key])
                 elif key == 'gateway':
+                    self.setGateway(options[key])
+                elif key == 'dns-nameservers':
                     self.setGateway(options[key])
                 elif key == 'broadcast':
                     self.setBroadcast(options[key])
